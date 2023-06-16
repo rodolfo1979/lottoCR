@@ -71,7 +71,7 @@ var ballData = {radius:60, scale:1};
 
 // Store number to display on the array
 
-function saveNumber() {
+function saveNumber1() {
 	document.getElementById("inputContainer").style.display = "none";
 	document.getElementById("inputLabel").style.display = "none";
 	const input = document.getElementById('numberInput');
@@ -81,6 +81,25 @@ function saveNumber() {
 	document.getElementById("numberInput").style.display = "none";
 }
 
+function saveNumber() {
+    const input = document.getElementById('numberInput');
+    const values = input.value.split(','); // Obtener los valores separados por comas
+    for (let i = 0; i < values.length; i++) {
+        const number = parseFloat(values[i].trim()); // Convertir cada valor a número
+        if (!isNaN(number)) {
+            gameData.revealArray.push(number);
+        }
+    }
+    console.log('Numbers:', gameData.revealArray);
+    input.value = ""; // Limpiar el valor del input después de agregar los valores al arreglo
+    
+    // Ocultar la ventana después de 8 segundos
+    setTimeout(function() {
+        document.getElementById("inputContainer").style.display = "none";
+        document.getElementById("inputLabel").style.display = "none";
+        document.getElementById("numberInput").style.display = "none";
+    }, 12000); // 8000 milisegundos = 12 segundos
+}
 /*!
  * 
  * GAME BUTTONS - This is the function that runs to setup button event
